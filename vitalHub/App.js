@@ -33,10 +33,28 @@ import { DoctorMain, Main } from "./src/components/Main/Main";
 import {
   requestForegroundPermissionsAsync
   } from 'expo-location'
+//DarkMode
+import React, { useEffect,useState } from "react";
+import { EventRegister } from 'react-native-event-listeners'
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+//DarkMode
+const[darkMode,setDarkMode] = useState(false)
+useEffect(()=>{
+  const listener = EventRegister.addEventListener('ChangeTheme', (data)=>{
+    setDarkMode(data)
+    console.log(data)
+  })
+  return() =>{
+    EventRegister.removeAllListeners(listener)
+  }
+},[darkMode])
+
+
+
   let [fontsLoaded, fontError] = useFonts({
     MontserratAlternates_500Medium,
     MontserratAlternates_600SemiBold,
@@ -54,7 +72,8 @@ export default function App() {
   
    
   }
-  
+
+
   return (
     //Container - envolve toda a estrutura de navegação
     //Navigator - componente para a navegação

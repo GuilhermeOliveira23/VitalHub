@@ -1,4 +1,4 @@
-import { StatusBar } from "react-native"
+import { StatusBar, Switch } from "react-native"
 import { BoxDataHome, BoxHome, ButtonHomeContainer, Container, FlatContainer, MoveIconBell } from "../../components/Container/StyleContainer"
 import { Header } from "../../components/Header/StyledHeader"
 import { ImagemHome } from "../../components/Images/StyleImages"
@@ -15,10 +15,12 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import { Stethoscope } from "../../components/Stethoscope/StyleSthetoscope"
 import { ModalStethoscope } from "../../components/Stethoscope/ModalStethoscope"
 import { PatientAppointmentModal } from "../../components/PatientAppointmentModal/PatientAppointmentModal"
-
+//DarkMode
+import { EventRegister } from 'react-native-event-listeners'
 
 export const PatientConsultation = ({ navigation }) => {
-
+    //Global DARK MODE
+    const [darkMode, setDarkMode] = useState(false)
     //STATE PARA O ESTADO DOS CARDS FLATLIST, BOTOES FILTRO
     const [selected, setSelected] = useState({
         agendadas: true,
@@ -115,7 +117,14 @@ export const PatientConsultation = ({ navigation }) => {
                 <FilterButton onPress={() => { setSelected({ canceladas: true }) }} selected={selected.canceladas} text={'Canceladas'} />
 
             </ButtonHomeContainer>
+            <Switch
+            value = {darkMode}
+            onValueChange={(value)=> {
+                setDarkMode(value)
+                EventRegister.emit('ChangeTheme', value)
+            }}
 
+            />
             <FlatContainer
                 data={data}
                 renderItem={({ item }) =>
