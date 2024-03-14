@@ -9,6 +9,10 @@ export const Navegacao = ({ navigation }) => {
                 onPress={() => navigation.navigate("Login")}
             />
             <Button
+                title="Camera"
+                onPress={() => navigation.navigate("Camera")}
+            />
+            <Button
                 title="ForgotPassword"
                 onPress={() => navigation.navigate("ForgotPassword")}
             />

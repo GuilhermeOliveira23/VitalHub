@@ -10,6 +10,7 @@ import { Line, TitleImage } from "./Style"
 
 
 export const ViewPrescription = ({ navigation }) => {
+
     return (
         <>
             <ScrollContainer>
@@ -62,7 +63,8 @@ export const ViewPrescription = ({ navigation }) => {
                     </BoxViewImageImport>
 
                     <BoxBtn>
-                        <SendButton text={"Enviar"} />
+                        <SendButton text={"Enviar"} onPress={() => {navigation.navigate("Camera")}}
+                         />
                         <CardCancel text={"Cancelar"} />
                     </BoxBtn>
 
@@ -76,7 +78,7 @@ export const ViewPrescription = ({ navigation }) => {
                         fieldWidth={90}
                     />
 
-                    <CardBackLess onPressCancel={() => { navigation.navigate("PatientConsultation") }} text={"Voltar"}/>
+                    <CardBackLess onPressCancel={() => {navigation.navigate("PatientConsultation") }} text={"Voltar"}/>
 
                 </Container>
 

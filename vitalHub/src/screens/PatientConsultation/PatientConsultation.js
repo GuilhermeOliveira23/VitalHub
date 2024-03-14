@@ -120,7 +120,7 @@ export const PatientConsultation = ({ navigation }) => {
             <Switch
             value = {darkMode}
             onValueChange={(value)=> {
-                setDarkMode(value)
+                setDarkMode(value);
                 EventRegister.emit('ChangeTheme', value)
             }}
 

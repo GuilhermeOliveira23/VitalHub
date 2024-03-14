@@ -4,6 +4,7 @@ import { StatusBar } from "react-native";
 import { Navegacao } from "./src/screens/Navegacao/Navegacao";
 import { Login } from "./src/screens/Login/Login";
 import { ForgotPassword } from "./src/screens/ForgotPassword/ForgotPassword";
+import theme from "./theme/theme";
 
 import {
   useFonts,
@@ -36,6 +37,7 @@ import {
 //DarkMode
 import React, { useEffect,useState } from "react";
 import { EventRegister } from 'react-native-event-listeners'
+import Camera from "./src/screens/Camera/Camera";
 
 const Stack = createNativeStackNavigator();
 
@@ -115,6 +117,10 @@ useEffect(()=>{
         <Stack.Screen
           name="DoctorMain"
           component={DoctorMain}
+        />
+        <Stack.Screen
+          name="Camera"
+          component={Camera}
         />
 
 
