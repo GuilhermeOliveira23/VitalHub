@@ -7,7 +7,8 @@ import { Ionicons } from '@expo/vector-icons';
 import Calendar from "../../components/Calendar/Calendar"
 
 import { FilterButton } from "../../components/Button/Button"
-import { useState } from "react"
+import { useState,useContext } from "react"
+import themeContext from "../../../theme/themeContext"
 import { Card } from "../../components/Cards/Cards"
 import { CancellationModal } from "../../components/CancellationModal/CancellationModal"
 
@@ -21,12 +22,15 @@ import { EventRegister } from 'react-native-event-listeners'
 export const PatientConsultation = ({ navigation }) => {
     //Global DARK MODE
     const [darkMode, setDarkMode] = useState(false)
+    const theme = useContext(themeContext);
     //STATE PARA O ESTADO DOS CARDS FLATLIST, BOTOES FILTRO
     const [selected, setSelected] = useState({
         agendadas: true,
         realizadas: false,
         canceladas: false,
     });
+    
+    
 
     const image = require("../../assets/CardDoctorImage.png");
 
@@ -82,7 +86,7 @@ export const PatientConsultation = ({ navigation }) => {
 
     return (
 
-        <Container>
+        <Container style = {backgroundColor = theme.backgroundColor}>
             <Header>
 
                 <StatusBar translucent backgroundColor="transparent" />
@@ -117,14 +121,7 @@ export const PatientConsultation = ({ navigation }) => {
                 <FilterButton onPress={() => { setSelected({ canceladas: true }) }} selected={selected.canceladas} text={'Canceladas'} />
 
             </ButtonHomeContainer>
-            <Switch
-            value = {darkMode}
-            onValueChange={(value)=> {
-                setDarkMode(value);
-                EventRegister.emit('ChangeTheme', value)
-            }}
-
-            />
+            
             <FlatContainer
                 data={data}
                 renderItem={({ item }) =>
@@ -136,6 +133,14 @@ export const PatientConsultation = ({ navigation }) => {
 
             />
 
+        {/* <Switch
+            value = {darkMode}
+            onValueChange={(value)=> {
+                setDarkMode(value);
+                EventRegister.emit('ChangeTheme', value)
+            }}
+
+            /> */}
             <Stethoscope onPress={() => setShowModalStethoscope(true)}>
 
                 <FontAwesome6

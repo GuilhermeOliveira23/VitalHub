@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { SendButton } from "../../components/Button/Button"
 import { ButtonSend } from "../../components/Button/StyleButton"
 import { BoxAgeEmail, BoxBtn, BoxDescription, BoxViewImageImport, Container, ScrollContainer, ViewImageImport } from "../../components/Container/StyleContainer"
@@ -7,12 +8,25 @@ import { HighInputBox, HighInputBoxGrey, InputBox, LargeInputTextBox } from "../
 import { Label } from "../../components/Label/Label"
 import { TitleProfile } from "../../components/Title/StyleTitle"
 import { Line, TitleImage } from "./Style"
+import Camera from "../Camera/Camera"
+import { useContext } from "react"
 
+import themeContext from "../../../theme/themeContext"
+import { View } from "react-native"
 
 export const ViewPrescription = ({ navigation }) => {
+const [uriCameraCapture, setUriCameraCapture] = useState()
+const [showCameraModal,setShowCameraModal] = useState()
 
+const theme = useContext(themeContext)
+const [darkMode,setDarkMode] = useState(true)
     return (
-        <>
+        <View style = {[{backgroundColor: theme.backgroundColor}]}>
+        <Camera
+        visible={showCameraModal}
+        setUriCameraCapture={setUriCameraCapture}
+        setShowCameraModal={setShowCameraModal}
+        />
             <ScrollContainer>
 
                 <Container>
@@ -57,7 +71,7 @@ export const ViewPrescription = ({ navigation }) => {
                         <Label textLabel={"Exames médicos"} />
 
                         <ViewImageImport>
-                            <TitleImage>{"[ ! ] Nenhuma foto informada"}</TitleImage>
+                            <TitleImage>{showCameraModal}</TitleImage>
                         </ViewImageImport>
 
                     </BoxViewImageImport>
@@ -83,6 +97,6 @@ export const ViewPrescription = ({ navigation }) => {
                 </Container>
 
             </ScrollContainer>
-        </>
+        </View>
     )
 }

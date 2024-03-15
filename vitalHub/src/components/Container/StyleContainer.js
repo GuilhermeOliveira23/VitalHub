@@ -1,11 +1,11 @@
 import styled from "styled-components";
-
+import theme from "../../../theme/theme";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const Container = styled.SafeAreaView`
   flex: 1;
   align-items: center;
-  background-color: #fafafa;
+  background-color: ${theme.backgroundColor};
 `;
 
 export const ViewBoxMedium = styled.SafeAreaView`

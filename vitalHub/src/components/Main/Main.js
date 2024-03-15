@@ -11,12 +11,15 @@ import { PatientProfile } from "../../screens/PatientProfile/PatientProfile";
 import { PatientConsultation } from "../../screens/PatientConsultation/PatientConsultation";
 
 import { DoctorConsultation } from "../../screens/DoctorConsultation/DoctorConsultation";
+import { Switch } from "react-native";
 
 const bottomTab = createBottomTabNavigator();
 
 export const Main = () => {
 
   return (
+    
+
 
     <bottomTab.Navigator
       initialRouteName="PatientConsultation"
@@ -50,7 +53,10 @@ export const Main = () => {
               >
                 <FontAwesome5 name="user-circle" size={22} color="#4E4B59" />
                 {focused && <TextBar>Perfil</TextBar>}
+                
               </BarContent>
+
+              
             );
           }
         },

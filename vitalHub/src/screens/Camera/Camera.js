@@ -6,7 +6,8 @@ import { FontAwesome, AntDesign } from '@expo/vector-icons'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import * as MediaLibrary from "expo-media-library"
-export default function App() {
+
+export default function App({visible,setUriCameraCapture,setShowCameraModal}) {
   const cameraRef = useRef(null)
   const [openModal, setOpenModal] = useState(false)
   const [photo, setPhoto] = useState(null)
@@ -25,11 +26,21 @@ export default function App() {
 
       setPhoto(photo.uri)
       setOpenModal(true)
-
+      
       console.log(photo)
     }
   }
- 
+  
+ async function SendFormPhoto(){
+  await setUriCameraCapture(photo);
+  handleClose();
+
+ }
+ async function SendFormPhotoModal(){
+  await setShowCameraModal(photo);
+  handleClose();
+
+ }
 
   async function ClearPhoto(){
     setPhoto(null)
@@ -51,6 +62,8 @@ export default function App() {
         style={styles.camera}
         ratio='16:9'
         flashMode={flashMode}
+        visible = {visible}
+
         >
 
         <View style={styles.viewFlip}>
@@ -92,7 +105,7 @@ export default function App() {
       <TouchableOpacity style={styles.btnClear} onPress={() => ClearPhoto()}>
             <FontAwesome5 name="trash" size={24} color="black" />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.btnUpload} onPress={() => UploadPhoto()}>
+      <TouchableOpacity style={styles.btnUpload} onPress={() => SendFormPhoto()}>
       <Feather name="upload" size={24} color="black" />
       </TouchableOpacity>
 

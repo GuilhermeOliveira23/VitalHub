@@ -4,7 +4,6 @@ import { StatusBar } from "react-native";
 import { Navegacao } from "./src/screens/Navegacao/Navegacao";
 import { Login } from "./src/screens/Login/Login";
 import { ForgotPassword } from "./src/screens/ForgotPassword/ForgotPassword";
-import theme from "./theme/theme";
 
 import {
   useFonts,
@@ -30,13 +29,15 @@ import { ConsultLocalization } from "./src/screens/ConsultLocalization/ConsultLo
 import { ViewPrescription } from "./src/screens/ViewPrescription/ViewPrescription";
 import Splash from "./src/screens/Splash/Splash";
 import { DoctorMain, Main } from "./src/components/Main/Main";
-
+import React, { useEffect,useState } from "react";
 import {
   requestForegroundPermissionsAsync
   } from 'expo-location'
 //DarkMode
-import React, { useEffect,useState } from "react";
+import theme from "./theme/theme";
+import themeContext from "./theme/themeContext";
 import { EventRegister } from 'react-native-event-listeners'
+
 import Camera from "./src/screens/Camera/Camera";
 
 const Stack = createNativeStackNavigator();
@@ -83,8 +84,8 @@ useEffect(()=>{
     //name: nome da tela
     //component: componente que será chamado
     //options(title): título da tela
-
-    <NavigationContainer>
+<themeContext.Provider value={darkMode === true ? theme.dark: theme.light}>
+ <NavigationContainer>
       <StatusBar
         translucent
         backgroundColor="transparent"
@@ -208,5 +209,10 @@ useEffect(()=>{
         />
       </Stack.Navigator>
     </NavigationContainer>
+
+</themeContext.Provider>
+
+
+   
   );
 }
