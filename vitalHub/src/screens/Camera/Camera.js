@@ -7,12 +7,12 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import * as MediaLibrary from "expo-media-library"
 
-export default function App({visible,setUriCameraCapture,setShowCameraModal}) {
+export default function App({navigation}) {
   const cameraRef = useRef(null)
   const [openModal, setOpenModal] = useState(false)
   const [photo, setPhoto] = useState(null)
-  const [tipoCamera, setTipoCamera] = useState(CameraType.front)
-  const [flashMode, setFlashMode] = useState(Camera.Constants.FlashMode.on);
+  const [tipoCamera, setTipoCamera] = useState(CameraType.back)
+  const [flashMode, setFlashMode] = useState(Camera.Constants.FlashMode.off);
 
   useEffect(() => {
     (async () => {
@@ -31,28 +31,22 @@ export default function App({visible,setUriCameraCapture,setShowCameraModal}) {
     }
   }
   
- async function SendFormPhoto(){
-  await setUriCameraCapture(photo);
-  handleClose();
 
- }
- async function SendFormPhotoModal(){
-  await setShowCameraModal(photo);
-  handleClose();
-
- }
 
   async function ClearPhoto(){
     setPhoto(null)
     setOpenModal(false)
   }
   async function UploadPhoto(){
-    await MediaLibrary.createAssetAsync(photo)
-    .then(()=>{
-      alert('Foto salva com sucesso')
-    }).catch(error =>{
-      alert('Não foi possível processar a foto')
-    })
+    // await MediaLibrary.createAssetAsync(photo)
+    // .then(()=>{
+    //   alert('Foto salva com sucesso')
+    // }).catch(error =>{
+    //   alert('Não foi possível processar a foto')
+    // })
+    console.log(photo)
+    navigation.navigate("ViewPrescription", { photoUri: photo });
+
   }
   return (
     <View style={styles.container}>
@@ -62,7 +56,7 @@ export default function App({visible,setUriCameraCapture,setShowCameraModal}) {
         style={styles.camera}
         ratio='16:9'
         flashMode={flashMode}
-        visible = {visible}
+        
 
         >
 
@@ -98,14 +92,14 @@ export default function App({visible,setUriCameraCapture,setShowCameraModal}) {
             source={{ uri: photo }} />
 
           <View style={{ margin: 10, flexDirection: 'row', gap: 20 }}>
-            <TouchableOpacity style={styles.btnCapture} onPress={() => setOpenModal(false)}>
+            <TouchableOpacity style={styles.btnCapture} onPress={() => navigation.navigate("ViewPrescription")}>
               <AntDesign name='closecircle' size={23} color="#FFF" />
             </TouchableOpacity>
 
       <TouchableOpacity style={styles.btnClear} onPress={() => ClearPhoto()}>
             <FontAwesome5 name="trash" size={24} color="black" />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.btnUpload} onPress={() => SendFormPhoto()}>
+      <TouchableOpacity style={styles.btnUpload} onPress={() => UploadPhoto()}>
       <Feather name="upload" size={24} color="black" />
       </TouchableOpacity>
 

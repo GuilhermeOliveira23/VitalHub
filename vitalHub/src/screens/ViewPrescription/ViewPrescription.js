@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { SendButton } from "../../components/Button/Button"
 import { ButtonSend } from "../../components/Button/StyleButton"
 import { BoxAgeEmail, BoxBtn, BoxDescription, BoxViewImageImport, Container, ScrollContainer, ViewImageImport } from "../../components/Container/StyleContainer"
@@ -7,26 +7,27 @@ import { ViewImage } from "../../components/Images/StyleImages"
 import { HighInputBox, HighInputBoxGrey, InputBox, LargeInputTextBox } from "../../components/InputBox/InputBox"
 import { Label } from "../../components/Label/Label"
 import { TitleProfile } from "../../components/Title/StyleTitle"
-import { Line, TitleImage } from "./Style"
+import { ImportImages, Line, TitleImage } from "./Style"
 import Camera from "../Camera/Camera"
 import { useContext } from "react"
-
+import { ImagePrescription } from "../../components/Images/StyleImages"
 import themeContext from "../../../theme/themeContext"
 import { View } from "react-native"
 
-export const ViewPrescription = ({ navigation }) => {
-const [uriCameraCapture, setUriCameraCapture] = useState()
-const [showCameraModal,setShowCameraModal] = useState()
+export const ViewPrescription = ({ navigation, route }) => {
+useEffect(() => {
+    // console.log(photoUri)
+    console.log("sada") 
+    console.log(route.params)
+}, [route])
 
 const theme = useContext(themeContext)
 const [darkMode,setDarkMode] = useState(true)
+
+
     return (
         <View style = {[{backgroundColor: theme.backgroundColor}]}>
-        <Camera
-        visible={showCameraModal}
-        setUriCameraCapture={setUriCameraCapture}
-        setShowCameraModal={setShowCameraModal}
-        />
+
             <ScrollContainer>
 
                 <Container>
@@ -70,16 +71,18 @@ const [darkMode,setDarkMode] = useState(true)
                         
                         <Label textLabel={"Exames médicos"} />
 
-                        <ViewImageImport>
-                            <TitleImage>{showCameraModal}</TitleImage>
-                        </ViewImageImport>
+                        <ImportImages>
+                        {route.params ? <ImagePrescription source={{ uri : route.params.photoUri }} /> : <TitleImage>{"[ ! ] Nenhuma foto informada"}</TitleImage>}
+                        </ImportImages>
+                            
+                        
 
                     </BoxViewImageImport>
 
                     <BoxBtn>
                         <SendButton text={"Enviar"} onPress={() => {navigation.navigate("Camera")}}
                          />
-                        <CardCancel text={"Cancelar"} />
+                        <CardCancel text={"Cancelar"}/>
                     </BoxBtn>
 
                     <Line/>
