@@ -39,7 +39,8 @@
     "react-native-picker-select": "^9.0.1",
     "react-native-svg": "^14.1.0",
     "styled-components": "^6.1.8",
-    "expo-media-library": "~15.9.1"
+    "expo-media-library": "~15.9.1",
+    "expo-notifications": "~0.27.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
