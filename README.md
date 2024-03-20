@@ -1,5 +1,5 @@
 # VitalHub
-Bem vindo ao projeto VitalHub Mobile, para rodar o projeto utilize os seguintes comandos:
+Bem vindo ao projeto VitalHub Mobile, onde criamos uma aplicação médica onde há páginas para os pacientes e para os médicos, contendo as funcionalidades de login, consultas, mapa de localização das consultas, camera e entre outras
 
 # Instalar dependências
 'npm install'
