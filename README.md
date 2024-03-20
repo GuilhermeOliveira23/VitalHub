@@ -7,7 +7,7 @@ Bem vindo ao projeto VitalHub Mobile! Onde criamos uma aplicação médica com p
 # Rodar projeto
 -`npx expo start`
 
-
+</br>
 
 > [!NOTE]
 >Para utilizar o aplicativo em seu celular, basta baixar o aplicativo "expo go" e conectar-se a sua conta
