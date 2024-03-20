@@ -1,5 +1,5 @@
 # VitalHub
-Bem vindo ao projeto VitalHub Mobile, onde criamos uma aplicação médica onde há páginas para os pacientes e médicos, contendo as funcionalidades de login, consultas, mapa de localização das consultas, câmera e entre outros
+Bem vindo ao projeto VitalHub Mobile! Onde criamos uma aplicação médica onde há páginas para os pacientes e médicos, contendo as funcionalidades de login, consultas, mapa de localização das consultas, câmera e entre outros
 
 # Instalar dependências
 'npm install'
