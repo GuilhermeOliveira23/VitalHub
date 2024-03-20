@@ -3,6 +3,7 @@ Bem vindo ao projeto VitalHub Mobile, para rodar o projeto utilize os seguintes 
 
 Instalar dependências
 'npm install'
+
 Rodar projeto
 'npx expo start'
 
